@@ -1,21 +1,28 @@
 # IntuiCAM
 
-IntuiCAM is an experimental project aimed at developing an intuitive touchscreen interface designed specifically for lathe machines. Currently, the project is **not functional yet** and is under active development. The focus is on delivering a user-friendly interface optimized for touchscreens operating in portrait mode.
+**IntuiCAM** is a project developed for lathe machines with a special focus on providing an intuitive touchscreen interface in portrait mode. The goal is to deliver an easy-to-use control panel that integrates seamlessly with LinuxCNC systems.
 
-## Features
+> **Note:** This project is still in early development and is not fully functional yet. Feedback and contributions are welcome!
 
-- **Touchscreen Interface**  
-  Optimized for portrait mode, providing a natural and efficient user experience on touchscreen displays.
-  
-- **Lathe-Specific Design**  
-  Initially developed for lathe machines, with planned features tailored to the unique requirements of lathe control.
-
-- **Modular Structure**  
-  The repository is structured into modules for easy integration:
-  - **IntuiCAM_Screen**: Files intended for installation at `/usr/share/qtvcp/screens/`
-  - **IntuiCAM_Config**: Configuration files for LinuxCNC setups, to be installed at `/home/cnc/linuxcnc/configs/`
-  - **touch_file_manager.py**: A Python module to be added to `/usr/lib/python3/dist-packages/qtvcp/widgets/`
-  - **simplewidgets_plugin.py**: A plugin to replace the existing file at `/usr/lib/python3/dist-packages/qtvcp/plugins/`
+## Features (Planned)
+- **Touchscreen Optimized:** Designed primarily for portrait mode displays.
+- **Lathe Integration:** Tailored for lathe operations.
+- **Modular Structure:** Files are organized for easy deployment and customization.
 
 ## Repository Structure
 
+IntuiCAM/ # Repository root ├── IntuiCAM_Screen/ # Screen files to be deployed to /usr/share/qtvcp/screens/ ├── IntuiCAM_Config/ # Configuration files for LinuxCNC to be deployed to /home/cnc/linuxcnc/configs/ ├── widgets/ # Contains touch_file_manager.py for /usr/lib/python3/dist-packages/qtvcp/widgets/ └── plugins/ # Contains simplewidgets_plugin.py for /usr/lib/python3/dist-packages/qtvcp/plugins/
+
+
+Future Plans
+Expand functionality and refine the interface.
+
+Support additional machine types.
+
+Enhance the touchscreen experience and add new features.
+
+Contributing
+Contributions are welcome! Please fork the repository and submit pull requests with your improvements.
+
+License
+This project is licensed under the MIT License.
