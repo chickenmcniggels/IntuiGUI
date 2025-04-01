@@ -11,7 +11,11 @@
 
 ## Repository Structure
 
-IntuiCAM/ # Repository root ├── IntuiCAM_Screen/ # Screen files to be deployed to /usr/share/qtvcp/screens/ ├── IntuiCAM_Config/ # Configuration files for LinuxCNC to be deployed to /home/cnc/linuxcnc/configs/ ├── widgets/ # Contains touch_file_manager.py for /usr/lib/python3/dist-packages/qtvcp/widgets/ └── plugins/ # Contains simplewidgets_plugin.py for /usr/lib/python3/dist-packages/qtvcp/plugins/
+IntuiCAM/ # Repository root 
+├── IntuiCAM_Screen/ # Screen files to be deployed to /usr/share/qtvcp/screens/ 
+├── IntuiCAM_Config/ # Configuration files for LinuxCNC to be deployed to /home/cnc/linuxcnc/configs/ 
+├── widgets/ # Contains touch_file_manager.py for /usr/lib/python3/dist-packages/qtvcp/widgets/ 
+└── plugins/ # Contains simplewidgets_plugin.py for /usr/lib/python3/dist-packages/qtvcp/plugins/
 
 
 Future Plans
