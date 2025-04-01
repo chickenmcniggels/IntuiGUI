@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>1307</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>1280</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>818</width>
+    <height>1369</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>IntuiGUI</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="topBarLayout">
+      <item>
+       <widget class="QLabel" name="lblMachineState">
+        <property name="text">
+         <string>OPERATIONAL</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblUser">
+        <property name="text">
+         <string>User1</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnHome">
+        <property name="text">
+         <string>Home</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="homePage">
+       <layout class="QGridLayout" name="homeGridLayout">
+        <property name="leftMargin">
+         <number>15</number>
+        </property>
+        <property name="topMargin">
+         <number>15</number>
+        </property>
+        <property name="rightMargin">
+         <number>15</number>
+        </property>
+        <property name="bottomMargin">
+         <number>15</number>
+        </property>
+        <property name="spacing">
+         <number>20</number>
+        </property>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="btnTools">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Tools</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="btnCamWizard">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>CAM Wizard</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="btnStatus">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Status Page</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="btnMakros">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Makros</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QPushButton" name="btnSettings">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Settings</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" rowspan="2">
+         <widget class="QPushButton" name="btnControl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Control</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="controlPage">
+       <layout class="QVBoxLayout" name="controlLayout">
+        <item>
+         <layout class="QHBoxLayout" name="droLayout">
+          <item>
+           <widget class="QLabel" name="lblX">
+            <property name="text">
+             <string>X Position:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="DROLabel" name="droX"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblZ">
+            <property name="text">
+             <string>Z Position:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="DROLabel" name="droZ"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="spindleLayout">
+          <item>
+           <widget class="QLabel" name="lblSpindle">
+            <property name="text">
+             <string>Spindle Speed:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="DROLabel" name="droSpindle"/>
+          </item>
+          <item>
+           <widget class="QSlider" name="sldSpindleSpeed">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>3000</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="jogIncrementLayout">
+          <item>
+           <widget class="QLabel" name="lblJogIncrement">
+            <property name="text">
+             <string>Jog Increment:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmbJogIncrement">
+            <item>
+             <property name="text">
+              <string>0.1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>0.5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>1.0</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="mpgLayout">
+          <item>
+           <widget class="QLabel" name="lblMPG">
+            <property name="text">
+             <string>MPG Mode:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmbMPGMode">
+            <item>
+             <property name="text">
+              <string>Jog Axes</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Spindle Speed</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Other Function</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnRotateToolchanger">
+          <property name="text">
+           <string>Rotate Toolchanger</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnAxisSelector">
+          <property name="text">
+           <string>Select Axis</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="laserLayout">
+          <item>
+           <widget class="QLabel" name="lblLaser">
+            <property name="text">
+             <string>Laser Micrometer:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnMeasureLaser">
+            <property name="text">
+             <string>Measure Diameter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="DROLabel" name="droLaser"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="axisJogLayout">
+          <item>
+           <widget class="QPushButton" name="btnJogXPos">
+            <property name="text">
+             <string>Jog X+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnJogXNeg">
+            <property name="text">
+             <string>Jog X-</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnJogZPos">
+            <property name="text">
+             <string>Jog Z+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnJogZNeg">
+            <property name="text">
+             <string>Jog Z-</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="camWizardPage">
+       <layout class="QHBoxLayout" name="camWizardMainLayout">
+        <item>
+         <layout class="QVBoxLayout" name="sideMenuLayout">
+          <item>
+           <widget class="QPushButton" name="btnStep1">
+            <property name="text">
+             <string>Step 1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStep2">
+            <property name="text">
+             <string>Step 2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStep3">
+            <property name="text">
+             <string>Step 3</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStep4">
+            <property name="text">
+             <string>Step 4</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStep5">
+            <property name="text">
+             <string>Step 5</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="camWizardStack">
+          <widget class="QWidget" name="camStep1">
+           <layout class="QVBoxLayout" name="camStep1Layout">
+            <item>
+             <widget class="TouchFileManager" name="filemanager"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblCamStep1">
+              <property name="text">
+               <string>CAM Wizard - Step 1</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnNextStep1">
+              <property name="text">
+               <string>Next Step</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="camStep2">
+           <layout class="QVBoxLayout" name="camStep2Layout">
+            <item>
+             <widget class="QLabel" name="lblCamStep2">
+              <property name="text">
+               <string>CAM Wizard - Step 2</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="ToolOffsetView" name="tooloffsetview"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="camStep2NavLayout">
+              <item>
+               <widget class="QPushButton" name="btnPrevStep2">
+                <property name="text">
+                 <string>Back</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnNextStep2">
+                <property name="text">
+                 <string>Next Step</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="camStep3">
+           <layout class="QVBoxLayout" name="camStep3Layout">
+            <item>
+             <widget class="OriginOffsetView" name="originoffsetview"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblCamStep3">
+              <property name="text">
+               <string>CAM Wizard - Step 3</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="camStep3NavLayout">
+              <item>
+               <widget class="QPushButton" name="btnPrevStep3">
+                <property name="text">
+                 <string>Back</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnNextStep3">
+                <property name="text">
+                 <string>Next Step</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="camStep4">
+           <layout class="QVBoxLayout" name="camStep4Layout">
+            <item>
+             <widget class="QLabel" name="lblCamStep4">
+              <property name="text">
+               <string>CAM Wizard - Step 4 (Settings)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="camStep4NavLayout">
+              <item>
+               <widget class="QPushButton" name="btnPrevStep4">
+                <property name="text">
+                 <string>Back</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnNextStep4">
+                <property name="text">
+                 <string>Next Step</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="camStep5">
+           <layout class="QVBoxLayout" name="camStep5Layout">
+            <item>
+             <widget class="QLabel" name="lblCamStep5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>CAM Wizard - Step 5 (Simulation)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="GCodeGraphics" name="gcodegraphics_simulation"/>
+            </item>
+            <item>
+             <widget class="QWidget" name="vismachWidget" native="true"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="camStep5NavLayout">
+              <item>
+               <widget class="QPushButton" name="btnPrevStep5">
+                <property name="text">
+                 <string>Back</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnFinishCamWizard">
+                <property name="text">
+                 <string>Finish</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="toolsPage">
+       <layout class="QVBoxLayout" name="toolsLayout">
+        <item>
+         <widget class="QLabel" name="lblTools">
+          <property name="text">
+           <string>Tools Interface</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="makrosPage">
+       <layout class="QVBoxLayout" name="makrosLayout">
+        <item>
+         <widget class="QLabel" name="lblMakros">
+          <property name="text">
+           <string>Makros Interface</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="settingsPage">
+       <layout class="QVBoxLayout" name="settingsLayout">
+        <item>
+         <widget class="QLabel" name="lblSettings">
+          <property name="text">
+           <string>Settings Interface</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="statusPage">
+       <layout class="QVBoxLayout" name="statusLayout">
+        <item>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="CamView" name="camview"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="RoundProgressBar" name="RoundProgressBar"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="GCodeGraphics" name="gcodegraphics"/>
+          </item>
+          <item row="0" column="1">
+           <widget class="GcodeDisplay" name="gcode_display"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TouchFileManager</class>
+   <extends>QWidget</extends>
+   <header>qtvcp.widgets.touch_file_manager</header>
+  </customwidget>
+  <customwidget>
+   <class>RoundProgressBar</class>
+   <extends>QWidget</extends>
+   <header>qtvcp.widgets.round_progress</header>
+  </customwidget>
+  <customwidget>
+   <class>GCodeGraphics</class>
+   <extends>QWidget</extends>
+   <header>qtvcp.widgets.gcode_graphics</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DROLabel</class>
+   <extends>QLabel</extends>
+   <header>qtvcp.widgets.dro_widget</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GcodeDisplay</class>
+   <extends>QFrame</extends>
+   <header>qtvcp.widgets.gcode_editor</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>OriginOffsetView</class>
+   <extends>QTableView</extends>
+   <header>qtvcp.widgets.origin_offsetview</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ToolOffsetView</class>
+   <extends>QTableView</extends>
+   <header>qtvcp.widgets.tool_offsetview</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CamView</class>
+   <extends>QWidget</extends>
+   <header>qtvcp.widgets.camview_widget</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

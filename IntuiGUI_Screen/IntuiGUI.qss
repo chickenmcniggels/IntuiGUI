@@ -1,0 +1,218 @@
+/**************************************************/
+/*           IntuiGUI DARK THEME (Reworked)         */
+/**************************************************/
+
+/* Global background for non-button widgets */
+* {
+    background-color: #0D0A0B;
+    font: bold 24px "Lato Heavy";
+    color: #F3EFF5;
+}
+
+/* Main Window */
+QMainWindow {
+    background-color: #0D0A0B;
+}
+
+/* Status Bar */
+QStatusBar {
+    background-color: #0D0A0B;
+    color: #F3EFF5;
+}
+
+/* PushButtons & ToolButtons */
+QPushButton,
+QToolButton,
+ActionToolButton,
+SystemToolButton,
+AxisToolButton {
+    background-color: #454955;
+    border: 1px solid #33363f;
+    border-radius: 8px;
+    padding: 15px;
+    min-height: 80px;
+    color: #F3EFF5;
+}
+
+QPushButton:hover,
+QToolButton:hover {
+    background: qlineargradient(
+        x1:0.5, y1:0,
+        x2:0.5, y2:1,
+        stop:0   #454955,
+        stop:1   #575c6b
+    );
+    border: 1px solid #33363f;
+}
+
+QPushButton:pressed,
+QToolButton:pressed {
+    background: qlineargradient(
+        x1:0.5, y1:0,
+        x2:0.5, y2:1,
+        stop:0   #575c6b,
+        stop:1   #454955
+    );
+    border: 1px solid #33363f;
+}
+
+/* Labels */
+QLabel {
+    color: #F3EFF5;
+}
+
+/* DRO Labels */
+DROLabel {
+    background-color: #0D0A0B;
+    border: 1px solid #33363f;
+    border-radius: 4px;
+    color: #72B01D;
+}
+
+/* ComboBoxes */
+QComboBox {
+    background-color: #0D0A0B;
+    border: 1px solid #33363f;
+    padding: 10px;
+    min-width: 120px;
+    color: #F3EFF5;
+}
+QComboBox QAbstractItemView {
+    background-color: #0D0A0B;
+    color: #F3EFF5;
+}
+
+/* Touch-specific ListView styling */
+QListView {
+    background-color: #0D0A0B;
+    border: 1px solid #33363f;
+    border-radius: 4px;
+    font: bold 20px "Lato Heavy";
+    color: #F3EFF5;
+    padding: 10px;
+    alternate-background-color: #0D0A0B;  /* Use the same as background */
+}
+QListView::item {
+    padding: 20px;
+    margin: 5px;
+}
+QListView::item:selected {
+    background-color: #72B01D;
+    color: #0D0A0B;
+}
+/* GroupBoxes */
+QGroupBox {
+    border: 1px solid #33363f;
+    border-radius: 4px;
+    margin-top: 16px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    padding: 0 3px;
+    color: #F3EFF5;
+}
+
+/* ProgressBar */
+QProgressBar {
+    background-color: #0D0A0B;
+    border: 1px solid #33363f;
+    border-radius: 4px;
+    color: #0D0A0B;
+}
+QProgressBar::chunk {
+    background-color: #72B01D;
+}
+
+/* Frames */
+QFrame {
+    background-color: #0D0A0B;
+    border: 1px solid #33363f;
+}
+
+/* Sliders */
+QSlider::groove:horizontal {
+    background-color: #0D0A0B;
+    height: 12px;
+    border-radius: 4px;
+}
+QSlider::sub-page:horizontal {
+    background-color: #72B01D;
+    border: 1px solid #33363f;
+    height: 10px;
+    border-radius: 4px;
+}
+QSlider::handle:horizontal {
+    background-color: #F3EFF5;
+    border: 1px solid #33363f;
+    width: 14px;
+    border-radius: 4px;
+}
+
+/* Menus */
+QMenu {
+    background-color: #0D0A0B;
+    border: 1px solid #33363f;
+}
+QMenu::item:selected {
+    background-color: #72B01D;
+}
+
+/* Tab Widgets */
+QTabWidget::pane {
+    border: 1px solid #33363f;
+    background-color: #0D0A0B;
+}
+QTabBar::tab {
+    background-color: #0D0A0B;
+    border: 2px solid #33363f;
+    border-radius: 4px;
+    padding: 2px;
+    color: #F3EFF5;
+}
+QTabBar::tab:selected,
+QTabBar::tab:hover {
+    background-color: #72B01D;
+    border-color: #33363f;
+}
+/* GCodeGraphics styling for Lathe Mode and Dark Theme */
+GCodeGraphics {
+    /* Set DRO fonts */
+    qproperty-dro_font: "Lato Heavy 24";
+    qproperty-dro_large_font: "Lato Heavy 32";
+
+    /* Set the default view orientation (valid for a lathe: "p", "y", or "y2") */
+    qproperty-_view: "y";
+
+    /* Disable DRO and Distance-To-Go displays for a clean look */
+    qproperty-_dro: false;
+    qproperty-_dtg: false;
+    
+    /* Use metric units */
+    qproperty-_metric: true;
+    
+    /* Disable overlay and offsets */
+    qproperty-_overlay: false;
+    qproperty-_offsets: false;
+    qproperty-_small_origin: false;
+
+    /* Set overlay color and transparency (if overlay were enabled) */
+    qproperty-overlay_color: "#72B01D";
+    qproperty-overlay_alpha: 0.15;
+
+    /* Set the background color and disable gradient */
+    qproperty-background_color: "#0D0A0B";
+    qproperty-_use_gradient_background: false;
+
+    /* Set jog, feed, and rapid colors */
+    qproperty-jog_color: "#72B01D";
+    qproperty-Feed_color: "#72B01D";
+    qproperty-Rapid_color: "rgba(0, 0, 255, 0.5)";
+
+    /* Inhibit external controls if needed */
+    qproperty-InhibitControls: true;
+
+    /* Set mouse/touch behavior: mode 1 enables two-finger zoom (if supported),
+       and invert mouse wheel zoom if required */
+    qproperty-MouseButtonMode: 1;
+    qproperty-MouseWheelInvertZoom: true;
+}

@@ -1,0 +1,34 @@
+# Simplified IntuiGUI HAL file for UI-only testing
+# Unlink any existing tool change connections (if they were previously linked)
+unlinkp iocontrol.0.tool-change
+unlinkp iocontrol.0.tool-changed
+
+# (Tool-change nets are omitted since no hardware is configured)
+# loadusr -Wn sim_panel qtvcp -a -d -o hide=groupBoxSelection sim_panel.ui
+# show pin sim_panel
+
+# Load the simulation panel for basic controls/hiding selection buttons
+loadusr -Wn sim_panel qtvcp -a -d -o hide=groupBoxSelection sim_panel.ui
+show pin sim_panel
+
+# Connect the cycle start signal from the simulation panel to the UI.
+# net cs-sig sim_panel.cyclestart IntuiGUI.cycle-start-in
+
+# Remove or comment out any net connections that refer to hardware signals
+# (jog counts, feedhold, abort, jog select, and jog increment connections are omitted)
+#
+# Example removed connections:
+# net mpg-sig axis.x.jog-counts axis.y.jog-counts axis.z.jog-counts sim_panel.MPG-s
+# net mpg-sig joint.0.jog-counts joint.1.jog-counts joint.2.jog-counts
+# net mpg-sig IntuiGUI.mpg-in
+#
+# net feedhold sim_panel.feedhold motion.feed-hold
+# net abort sim_panel.abort qttouchy.abort
+#
+# net jogSelectx axis.x.jog-enable joint.0.jog-enable IntuiGUI.jogwheel.x-enable
+# net jogSelecty axis.y.jog-enable joint.1.jog-enable IntuiGUI.jogwheel.y-enable
+# net jogSelectz axis.z.jog-enable joint.2.jog-enable IntuiGUI.jogwheel.z-enable
+#
+# net jogIncrement IntuiGUI.jogwheel.increment
+# net jogIncrement axis.x.jog-scale axis.y.jog-scale axis.z.jog-scale
+# net jogIncrement joint.0.jog-scale joint.1.jog-scale joint.2.jog-scale
