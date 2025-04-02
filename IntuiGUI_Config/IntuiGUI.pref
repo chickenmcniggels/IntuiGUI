@@ -63,11 +63,11 @@ notify_start_timeout = 5
 
 [BOOK_KEEPING]
 last_loaded_directory = /home/cnc/linuxcnc/nc_files
-style_QSS_Path = /usr/share/qtvcp/screens/IntuiGUI/IntuiGUI.qss
+style_QSS_Path = /usr/share/qtvcp/screens/IntuiGUI_Screen/IntuiGUI.qss
 RecentPath_0 = /home/cnc/linuxcnc/nc_files/3D_Chips.ngc
 
 [FILEMANAGER_JUMPLIST]
-hallib = /home/cnc/linuxcnc/configs/sim.qttouchy/hallib
+hallib = /home/cnc/linuxcnc/configs/IntuiGUI_Config/hallib
 
 [CUSTOM_FORM_ENTRIES]
 DRO_Font = DejaVu Sans,10,-1,5,75,1,0,0,0,0
