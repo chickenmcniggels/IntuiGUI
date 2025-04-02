@@ -33,7 +33,7 @@ class HandlerClass:
         # Remove native window frame
         self.w.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
-        # CAM Wizard step tracking (0-indexed for steps 1–5)
+        # CAM Wizard step tracking (0-indexed for steps 1â€“5)
         self.current_cam_step = 0
 
         # Simulation timer reference
