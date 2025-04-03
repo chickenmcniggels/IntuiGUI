@@ -1,50 +1,32 @@
-IntuiGUI
-IntuiGUI is an intuitive touchscreen interface designed specifically for lathe machines, aiming to provide seamless integration with LinuxCNC systems. This project emphasizes ease of use and is optimized for portrait mode displays.
+# IntuiGUI
 
-Note: IntuiGUI is currently in early development stages and not yet fully functional. Contributions and feedback are highly encouraged!​
+**IntuiGUI** is an intuitive touchscreen interface designed specifically for lathe machines, optimized for portrait mode displays. It aims to provide seamless integration with LinuxCNC systems, enhancing user experience through a user-friendly control panel.
 
-Planned Features
-Touchscreen Optimization: Crafted for portrait-oriented displays to enhance user interaction.​
+> **Note:** This project is in its early stages of development and is not yet fully functional. Contributions and feedback are highly encouraged!
 
-Lathe Machine Integration: Specifically tailored to accommodate lathe operations.​
+## Planned Features
 
-Modular Architecture: Organized file structure to facilitate straightforward deployment and customization.​
+- **Touchscreen Optimization:** Designed with a focus on portrait-oriented touchscreen displays.
+- **Lathe Machine Integration:** Customized functionalities tailored for lathe operations.
+- **Modular Architecture:** Organized file structure to facilitate easy deployment and customization.
 
-Repository Structure
-The repository is organized as follows:​
+## Future Plans
 
-swift
-Kopieren
-Bearbeiten
-IntuiGUI/                 # Repository root
-├── IntuiGUI_Screen/      # Screen files for deployment to /usr/share/qtvcp/screens/
-├── IntuiGUI_Config/      # LinuxCNC configuration files for /home/cnc/linuxcnc/configs/
-├── widgets/              # Contains touch_file_manager.py for /usr/lib/python3/dist-packages/qtvcp/widgets/
-└── plugins/              # Contains simplewidgets_plugin.py for /usr/lib/python3/dist-packages/qtvcp/plugins/
-Future Plans
-Expand functionality and refine the user interface.​
+- **Functionality Expansion:** Introduce additional features to enhance capabilities.
+- **Support for Multiple Machine Types:** Extend compatibility beyond lathe machines.
+- **Enhanced Touchscreen Experience:** Refine the interface for a more responsive and user-friendly interaction.
 
-Extend support to additional machine types.​
+## Contributing
 
-Enhance the touchscreen experience with new features.​
+We welcome contributions! To contribute:
 
-Contributing
-We welcome contributions! To contribute:​
-GitHub
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Commit your changes with clear commit messages.
+4. Push your changes to your fork.
+5. Submit a pull request detailing your modifications.
 
-Fork the repository.​
+## License
 
-Create a new branch for your feature or bug fix.​
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-Commit your changes with clear descriptions.​
-
-Push your changes to your fork.​
-
-Submit a pull request for review.​
-
-Please ensure your contributions align with the project's goals and coding standards.​
-
-License
-This project is licensed under the MIT License. See the LICENSE file for more details.​
-
-For more information and to access the repository, visit the IntuiGUI GitHub page.
