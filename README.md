@@ -8,7 +8,6 @@
 
 - **Touchscreen Optimization:** Designed with a focus on portrait-oriented touchscreen displays.
 - **Lathe Machine Integration:** Customized functionalities tailored for lathe operations.
-- **Modular Architecture:** Organized file structure to facilitate easy deployment and customization.
 
 ## Future Plans
 
