@@ -175,7 +175,7 @@ QTabBar::tab:hover {
     border-color: #33363f;
 }
 /* GCodeGraphics styling for Lathe Mode and Dark Theme */
-GCodeGraphics {
+TouchGCodeGraphics {
     /* Set DRO fonts */
     qproperty-dro_font: "Lato Heavy 24";
     qproperty-dro_large_font: "Lato Heavy 32";
@@ -213,6 +213,6 @@ GCodeGraphics {
 
     /* Set mouse/touch behavior: mode 1 enables two-finger zoom (if supported),
        and invert mouse wheel zoom if required */
-    qproperty-MouseButtonMode: 1;
+    qproperty-MouseButtonMode: 0;
     qproperty-MouseWheelInvertZoom: true;
 }

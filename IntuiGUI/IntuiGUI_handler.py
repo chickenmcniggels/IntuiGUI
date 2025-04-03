@@ -9,7 +9,7 @@ from qtvcp.lib.keybindings import Keylookup
 from qtvcp.core import Status, Action, Info, Qhal
 from qtvcp import logger
 import hal
-from qtvcp.lib.qt_vismach.qt_vismach import GLWidget, Capture, Collection, Box, CylinderZ, Color, Translate, HalRotate
+from qtvcp.lib.qt_vismach.qt_vismach import *
 
 LOG = logger.getLogger(__name__)
 
@@ -138,33 +138,76 @@ class HandlerClass:
 
     def loadMachineModel(self):
         """
-        Loads a lathe model using QtVismach primitives.
-        This model includes a base, headstock, spindle, tailstock, tool post, and a workpiece.
-        Modify dimensions as needed.
+        Constructs a fully built lathe model using QtVismach primitives.
+
+        The model includes:
+          - A large base.
+          - A headstock assembly on the left side, featuring a headstock block,
+            a horizontally oriented spindle (animated via HalRotate), and drive dogs.
+          - A tailstock assembly on the right side with a tailstock block and a tail center.
+          - A tool rest fixture mounted on the base.
+          - A workpiece (horizontal cylinder) mounted between the headstock and tailstock.
+
+        The parts are created as individual primitives, colored, animated where appropriate,
+        and then assembled into a hierarchical Collection to ensure that child parts move
+        with their parents.
         """
-        base = Box(-150, -50, 0, 150, 50, 20)
+        # --- Base ---
+        # A large, stable foundation
+        base = Box(-250, -100, 0, 250, 100, 50)
         base = Color([0.5, 0.5, 0.5, 1.0], [base])
 
-        headstock = Box(-50, -30, 20, 50, 30, 60)
-        headstock = Color([0.3, 0.3, 0.3, 1.0], [headstock])
+        # --- Headstock Assembly ---
+        # Headstock Block: fixed structure on the left side
+        headstock_block = Box(-250, -50, 50, -200, 50, 150)
+        headstock_block = Color([0.3, 0.3, 0.3, 1.0], [headstock_block])
 
-        spindle = CylinderZ(0, 10, 100, 10)
+        # Spindle: create as a vertical cylinder then rotate it to horizontal.
+        spindle = CylinderZ(0, 10, 80, 10)  # a cylinder along the Z-axis
+        spindle = Rotate([spindle], 90, 0, 1, 0)  # rotate 90° about Y-axis to make it horizontal
+        spindle = Translate([spindle], -225, 0, 100)  # position it within the headstock block
         spindle = Color([0.8, 0.8, 0.8, 1.0], [spindle])
         spindle = HalRotate([spindle], None, "spindle.sim", 360, 0, 0, 1)
 
-        tailstock = Box(100, -30, 20, 150, 30, 60)
-        tailstock = Color([0.3, 0.3, 0.3, 1.0], [tailstock])
+        # Drive Dogs: small boxes mounted on the spindle periphery to drive the workpiece
+        drive_dogs = Box(-5, -3, 70, 5, 3, 80)
+        drive_dogs = Translate([drive_dogs], -225, 0, 100)  # align with spindle center
+        drive_dogs = Color([1, 1, 1, 1], [drive_dogs])
+        drive_dogs = HalRotate([drive_dogs], None, "spindle.sim", 360, 0, 0, 1)
 
-        tool_post = Box(60, -10, 60, 90, 10, 80)
-        tool_post = Color([0.7, 0.7, 0.7, 1.0], [tool_post])
+        # Assemble the headstock assembly
+        head_assembly = Collection([headstock_block, spindle, drive_dogs])
 
-        workpiece = CylinderZ(0, 20, 300, 20)
+        # --- Tailstock Assembly ---
+        # Tailstock Block: structure on the right side
+        tailstock_block = Box(200, -30, 50, 250, 30, 130)
+        tailstock_block = Color([0.3, 0.3, 0.3, 1.0], [tailstock_block])
+
+        # Tail Center: a small horizontal cylinder in the tailstock block (create vertically then rotate)
+        tail_center = CylinderZ(0, 5, 20, 5)
+        tail_center = Rotate([tail_center], 90, 0, 1, 0)
+        tail_center = Translate([tail_center], 225, 0, 90)
+        tail_center = Color([0.8, 0.8, 0.8, 1.0], [tail_center])
+
+        # Assemble the tailstock assembly
+        tail_assembly = Collection([tailstock_block, tail_center])
+
+        # --- Tool Rest ---
+        # A fixture for supporting the cutting tool, mounted on the base.
+        tool_rest = Box(-50, 70, 60, 50, 90, 80)
+        tool_rest = Color([0.7, 0.7, 0.7, 1.0], [tool_rest])
+
+        # --- Workpiece ---
+        # Create a workpiece as a horizontal cylinder that spans from the headstock to the tailstock.
+        workpiece = CylinderZ(0, 12, 400, 12)  # defined along the Z-axis initially
+        workpiece = Rotate([workpiece], 90, 0, 1, 0)  # rotate to horizontal orientation
+        workpiece = Translate([workpiece], -225, 0, 100)  # position between headstock and tailstock
         workpiece = Color([0.9, 0.9, 0.9, 1.0], [workpiece])
-        workpiece = Translate([workpiece], 0, 0, 60)
 
-        head_assembly = Collection([headstock, spindle, tool_post])
-        lathe_model = Collection([base, head_assembly, tailstock, workpiece])
-        LOG.info("Lathe model loaded: base, head assembly, tailstock, workpiece created.")
+        # --- Assemble Complete Lathe Model ---
+        lathe_model = Collection([base, head_assembly, tail_assembly, tool_rest, workpiece])
+        LOG.info(
+            "Fully constructed lathe model loaded: base, headstock (with spindle and drive dogs), tailstock, tool rest, and workpiece created.")
         return lathe_model
 
     def simulateGCode(self):
@@ -401,7 +444,6 @@ class HandlerClass:
     def selectAxis(self):
         axis = self.getNextAxis()
         LOG.info("Axis selected: %s", axis)
-        self.w.lblDRO_X.setText("X: 0.00 (Axis: {})".format(axis))
 
     def getNextAxis(self):
         axis = self.axis_list[self.axis_index]

@@ -74,7 +74,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="homePage">
        <layout class="QGridLayout" name="homeGridLayout">
@@ -595,16 +595,23 @@
         <item>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
-           <widget class="CamView" name="camview"/>
-          </item>
-          <item row="1" column="1">
-           <widget class="RoundProgressBar" name="RoundProgressBar"/>
+           <widget class="GcodeDisplay" name="gcode_display"/>
           </item>
           <item row="1" column="0">
-           <widget class="GCodeGraphics" name="gcodegraphics"/>
+           <widget class="TouchGCodeGraphics" name="touchgcodegraphics"/>
           </item>
           <item row="0" column="1">
-           <widget class="GcodeDisplay" name="gcode_display"/>
+           <widget class="CamView" name="camview">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>300</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="MachineLog" name="machinelog"/>
           </item>
          </layout>
         </item>
@@ -622,14 +629,20 @@
    <header>qtvcp.widgets.touch_file_manager</header>
   </customwidget>
   <customwidget>
-   <class>RoundProgressBar</class>
-   <extends>QWidget</extends>
-   <header>qtvcp.widgets.round_progress</header>
+   <class>MachineLog</class>
+   <extends>QTextEdit</extends>
+   <header>qtvcp.widgets.machine_log</header>
   </customwidget>
   <customwidget>
    <class>GCodeGraphics</class>
    <extends>QWidget</extends>
    <header>qtvcp.widgets.gcode_graphics</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TouchGCodeGraphics</class>
+   <extends>GCodeGraphics</extends>
+   <header>qtvcp.widgets.touch_gcode_graphics</header>
    <container>1</container>
   </customwidget>
   <customwidget>
