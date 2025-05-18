@@ -1,0 +1,150 @@
+# Mesa 7c81 HAL file for IntuiGUI
+# Based on recommendations from atdragon and Mesa forums
+
+# Load the real-time components
+# Use the hm2_rpspi driver for the Mesa 7c81 board
+loadrt hm2_rpspi config="spidev_path=/dev/spidev0.0"
+
+# Load the base threading components
+loadrt threads name1=servo-thread period1=1000000
+
+# Configure the hostmot2 driver
+# Notice how we use the 7c81 name, and specify the SPI device path
+loadrt hostmot2
+
+# Load additional components for a stepper-based system
+loadrt stepgen step_type=0 ctrl_type=p 
+loadrt pid count=3
+
+# Functions to be added to threads
+addf hm2_7c81.0.read servo-thread
+addf stepgen.update-freq servo-thread
+addf stepgen.make-pulses servo-thread
+addf pid.0.do-pid-calcs servo-thread
+addf pid.1.do-pid-calcs servo-thread
+addf pid.2.do-pid-calcs servo-thread
+addf hm2_7c81.0.write servo-thread
+addf stepgen.capture-position servo-thread
+
+# Set stepgen parameters
+# These are for a standard stepper system, adjust as needed for your machine
+setp hm2_7c81.0.stepgen.00.dirsetup        200
+setp hm2_7c81.0.stepgen.00.dirhold         200
+setp hm2_7c81.0.stepgen.00.steplen         40
+setp hm2_7c81.0.stepgen.00.stepspace       40
+setp hm2_7c81.0.stepgen.00.position-scale  [JOINT_0]SCALE
+setp hm2_7c81.0.stepgen.00.maxvel          [JOINT_0]MAX_VELOCITY
+setp hm2_7c81.0.stepgen.00.maxaccel        [JOINT_0]MAX_ACCELERATION
+
+setp hm2_7c81.0.stepgen.01.dirsetup        200
+setp hm2_7c81.0.stepgen.01.dirhold         200
+setp hm2_7c81.0.stepgen.01.steplen         40
+setp hm2_7c81.0.stepgen.01.stepspace       40
+setp hm2_7c81.0.stepgen.01.position-scale  [JOINT_1]SCALE
+setp hm2_7c81.0.stepgen.01.maxvel          [JOINT_1]MAX_VELOCITY
+setp hm2_7c81.0.stepgen.01.maxaccel        [JOINT_1]MAX_ACCELERATION
+
+setp hm2_7c81.0.stepgen.02.dirsetup        200
+setp hm2_7c81.0.stepgen.02.dirhold         200
+setp hm2_7c81.0.stepgen.02.steplen         40
+setp hm2_7c81.0.stepgen.02.stepspace       40
+setp hm2_7c81.0.stepgen.02.position-scale  [JOINT_2]SCALE
+setp hm2_7c81.0.stepgen.02.maxvel          [JOINT_2]MAX_VELOCITY
+setp hm2_7c81.0.stepgen.02.maxaccel        [JOINT_2]MAX_ACCELERATION
+
+# PID settings
+setp pid.0.Pgain     1000.0
+setp pid.0.Igain     0.0
+setp pid.0.Dgain     0.0
+setp pid.0.bias      0.0
+setp pid.0.FF0       0.0
+setp pid.0.FF1       1.0
+setp pid.0.FF2       0.0
+setp pid.0.deadband  0.0
+
+setp pid.1.Pgain     1000.0
+setp pid.1.Igain     0.0
+setp pid.1.Dgain     0.0
+setp pid.1.bias      0.0
+setp pid.1.FF0       0.0
+setp pid.1.FF1       1.0
+setp pid.1.FF2       0.0
+setp pid.1.deadband  0.0
+
+setp pid.2.Pgain     1000.0
+setp pid.2.Igain     0.0
+setp pid.2.Dgain     0.0
+setp pid.2.bias      0.0
+setp pid.2.FF0       0.0
+setp pid.2.FF1       1.0
+setp pid.2.FF2       0.0
+setp pid.2.deadband  0.0
+
+# Connect the various signals
+# Connect motion controller to stepper generators
+net x-pos-cmd joint.0.motor-pos-cmd => pid.0.command
+net x-vel-cmd joint.0.vel-cmd => pid.0.command-deriv
+net x-pos-fb hm2_7c81.0.stepgen.00.position-fb => joint.0.motor-pos-fb
+net x-pid-out pid.0.output => hm2_7c81.0.stepgen.00.velocity-cmd
+net x-enable joint.0.amp-enable-out => hm2_7c81.0.stepgen.00.enable
+
+net y-pos-cmd joint.1.motor-pos-cmd => pid.1.command
+net y-vel-cmd joint.1.vel-cmd => pid.1.command-deriv
+net y-pos-fb hm2_7c81.0.stepgen.01.position-fb => joint.1.motor-pos-fb
+net y-pid-out pid.1.output => hm2_7c81.0.stepgen.01.velocity-cmd
+net y-enable joint.1.amp-enable-out => hm2_7c81.0.stepgen.01.enable
+
+net z-pos-cmd joint.2.motor-pos-cmd => pid.2.command
+net z-vel-cmd joint.2.vel-cmd => pid.2.command-deriv
+net z-pos-fb hm2_7c81.0.stepgen.02.position-fb => joint.2.motor-pos-fb
+net z-pid-out pid.2.output => hm2_7c81.0.stepgen.02.velocity-cmd
+net z-enable joint.2.amp-enable-out => hm2_7c81.0.stepgen.02.enable
+
+# Configure GPIO pins for home and limit switches
+# These are examples and should be adjusted based on your actual hardware configuration
+# The exact pin numbers will depend on your machine wiring
+# You'll need to determine which pins on the Mesa card correspond to your switches
+
+# X axis limit switches
+net x-home-sw <= hm2_7c81.0.gpio.001.in
+net x-home-sw => joint.0.home-sw-in
+net x-neg-limit <= hm2_7c81.0.gpio.002.in
+net x-neg-limit => joint.0.neg-lim-sw-in
+net x-pos-limit <= hm2_7c81.0.gpio.003.in
+net x-pos-limit => joint.0.pos-lim-sw-in
+
+# Y axis limit switches
+net y-home-sw <= hm2_7c81.0.gpio.004.in
+net y-home-sw => joint.1.home-sw-in
+net y-neg-limit <= hm2_7c81.0.gpio.005.in
+net y-neg-limit => joint.1.neg-lim-sw-in
+net y-pos-limit <= hm2_7c81.0.gpio.006.in
+net y-pos-limit => joint.1.pos-lim-sw-in
+
+# Z axis limit switches
+net z-home-sw <= hm2_7c81.0.gpio.007.in
+net z-home-sw => joint.2.home-sw-in
+net z-neg-limit <= hm2_7c81.0.gpio.008.in
+net z-neg-limit => joint.2.neg-lim-sw-in
+net z-pos-limit <= hm2_7c81.0.gpio.009.in
+net z-pos-limit => joint.2.pos-lim-sw-in
+
+# Connect E-stop and other essential signals
+net estop-out <= iocontrol.0.user-enable-out
+net estop-out => hm2_7c81.0.gpio.015.out
+
+# Configure spindle - if your machine has one
+# This is a simple open-loop spindle configuration
+setp hm2_7c81.0.pwmgen.00.output-type 1
+setp hm2_7c81.0.pwmgen.00.scale 3000
+net spindle-speed-cmd motion.spindle-speed-out => hm2_7c81.0.pwmgen.00.value
+net spindle-on motion.spindle-on => hm2_7c81.0.pwmgen.00.enable
+net spindle-cw motion.spindle-forward => hm2_7c81.0.gpio.010.out
+net spindle-ccw motion.spindle-reverse => hm2_7c81.0.gpio.011.out
+
+# Tool change signals - basic configuration
+net tool-change iocontrol.0.tool-change => hm2_7c81.0.gpio.012.out
+net tool-changed iocontrol.0.tool-changed <= hm2_7c81.0.gpio.013.in
+net tool-number iocontrol.0.tool-prep-number => hm2_7c81.0.gpio.014.out
+
+# End of basic 7c81 configuration 
