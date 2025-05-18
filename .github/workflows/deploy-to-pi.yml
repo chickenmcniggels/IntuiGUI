@@ -8,11 +8,16 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
       - name: Update repository
         run: |
-          cd $GITHUB_WORKSPACE
           git pull origin main
           
       - name: Deploy to Raspberry Pi
         run: |
-          ssh cnc@raspberrypi "/home/cnc/deployment_scripts/update_intuigui.sh" 
+          # No need for SSH since we're running directly on the Pi
+          bash /home/cnc/deployment_scripts/update_intuigui.sh 
