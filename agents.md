@@ -65,7 +65,8 @@ The UI consists of several main sections:
 2. **Version Control**: Use GitHub for version management
 3. **Automatic Deployment**: 
    - Changes pushed to the main branch are automatically deployed to the Raspberry Pi via GitHub Actions
-   - Deployment script syncs files to their respective locations
+   - GitHub runner connects to the Pi via SSH using its IP address
+   - The deployment script automatically syncs files to their respective locations on the Pi
    - No manual deployment needed for development
 4. **Testing**: Run the code on the Raspberry Pi to test functionality
 5. **Documentation**: Update documentation with any changes
