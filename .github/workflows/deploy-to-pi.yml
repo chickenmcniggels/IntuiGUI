@@ -1,0 +1,18 @@
+name: Deploy to Raspberry Pi
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Raspberry Pi
+        uses: appleboy/ssh-action@master
+        with:
+          host: raspberrypi
+          username: cnc
+          password: cnc
+          script: |
+            /home/cnc/deployment_scripts/update_intuigui.sh 

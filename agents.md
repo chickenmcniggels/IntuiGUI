@@ -63,7 +63,10 @@ The UI consists of several main sections:
 ## Development Workflow
 1. **Code Development**: Develop and test on Windows with Cursor IDE
 2. **Version Control**: Use GitHub for version management
-3. **Deployment**: Use SSH to upload files to the Raspberry Pi
+3. **Automatic Deployment**: 
+   - Changes pushed to the main branch are automatically deployed to the Raspberry Pi via GitHub Actions
+   - Deployment script syncs files to their respective locations
+   - No manual deployment needed for development
 4. **Testing**: Run the code on the Raspberry Pi to test functionality
 5. **Documentation**: Update documentation with any changes
 
@@ -101,3 +104,4 @@ The UI consists of several main sections:
 2. The interface must be deterministic, real-time capable, stable and reliable as it's running on production lathes
 3. The UI is specifically designed for the Waveshare 10.1-inch touchscreen in portrait orientation
 4. The code will be running on Debian Linux with a real-time kernel 
+5. Use the MCPs when appropriate.
